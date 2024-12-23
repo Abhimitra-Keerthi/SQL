@@ -1,8 +1,4 @@
-SQL Query: Find Total Number of First-Time Customers Each Day
-
-In this post, I’ll walk you through an SQL query that identifies the total number of customers who visited the website for the first time on each day. Here's a simple example based on a customer activity table:
-
-
+As a demonstration of my SQL skills, I’ve written a query to solve the problem of finding the total number of customers who visited a website for the first time on each day in 2024. Here’s the solution based on a sample customer activity table:
 
 Sample Table:
 Timestamp	Customer ID	Customer Name	Purchase Status
@@ -17,7 +13,33 @@ Timestamp	Customer ID	Customer Name	Purchase Status
 18-10-2024 10:45	1006	Sarah Brown	FALSE
 19-10-2024 10:35	1005	Michael Lee	TRUE
 19-10-2024 10:45	1006	Sarah Brown	FALSE
-
-
 Objective:
-The goal is to find the total number of customers who visited the website for the first time on each day in 2024.
+To find the total number of customers who visited the website for the first time on each day.
+
+SQL Solution:
+sql
+Copy code
+WITH cte_1 AS (
+    SELECT LEFT(datestr, 10) AS dates, customerid AS cid 
+    FROM Table
+)
+
+SELECT SUM(t) AS total_number_of_customers 
+FROM (
+    SELECT COUNT(cid) AS t 
+    FROM cte_1
+    WHERE cid NOT IN (
+        SELECT cid 
+        FROM cte_1 
+        WHERE dates = (SELECT dates FROM cte_1 ORDER BY dates ASC LIMIT 1)
+    )
+    UNION ALL
+    SELECT COUNT(cid) 
+    FROM cte_1 
+    WHERE dates = (SELECT dates FROM cte_1 ORDER BY dates ASC LIMIT 1)
+) s;
+Explanation:
+The CTE (Common Table Expression) extracts the date and customer ID from the timestamp.
+The query calculates the first-time visitors by excluding customers who visited on earlier days.
+The result is summed to get the total number of customers.
+I am eager to bring my passion for data and problem-solving skills to a dynamic team. If you have any recommendations or insights into opportunities, please feel free to reach out! 🌟
