@@ -1,0 +1,23 @@
+SQL Query: Find Total Number of First-Time Customers Each Day
+
+In this post, I’ll walk you through an SQL query that identifies the total number of customers who visited the website for the first time on each day. Here's a simple example based on a customer activity table:
+
+
+
+Sample Table:
+Timestamp	Customer ID	Customer Name	Purchase Status
+17-10-2024 10:05	1001	John Doe	TRUE
+17-10-2024 10:15	1002	Jane Smith	FALSE
+17-10-2024 10:20	1003	Alex Johnson	TRUE
+17-10-2024 10:22	1004	Emily Davis	FALSE
+17-10-2024 10:35	1005	Michael Lee	TRUE
+17-10-2024 10:45	1006	Sarah Brown	FALSE
+18-10-2024 10:22	1004	Emily Davis	FALSE
+18-10-2024 10:35	1005	Michael Lee	TRUE
+18-10-2024 10:45	1006	Sarah Brown	FALSE
+19-10-2024 10:35	1005	Michael Lee	TRUE
+19-10-2024 10:45	1006	Sarah Brown	FALSE
+
+
+Objective:
+The goal is to find the total number of customers who visited the website for the first time on each day in 2024.
